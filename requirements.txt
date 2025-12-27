@@ -1,0 +1,8 @@
+numpy>=1.21.0
+rospy>=1.15.0
+geometry-msgs>=1.13.0
+nav-msgs>=1.13.0
+sensor-msgs>=1.13.0
+
+
+
