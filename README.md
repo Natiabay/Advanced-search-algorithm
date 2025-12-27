@@ -1,96 +1,73 @@
-# Traveling Ethiopia AI Search Problem
+# Advanced Search Algorithms
 
-**Project Name:** `traveling-ethiopia-ai-search`
+This repository contains my implementations of various search algorithms for the Traveling Ethiopia problem. It was done as part of my AI Principles and Techniques coursework.
 
-This project implements various search algorithms for solving the Traveling Ethiopia search problem, as part of the Artificial Intelligence: Principles and Techniques course at Addis Ababa University Institute of Technology, School of Information Science and Engineering.
+## What's Inside
 
-## Project Structure
+I've implemented five different search algorithms:
 
-```
-.
-├── graph_data.py              # Data structures for all graph figures (1-5)
-├── question1_bfs_dfs.py       # Question 1: BFS and DFS implementation
-├── question2_ucs.py           # Question 2: Uniform Cost Search
-├── question3_astar.py         # Question 3: A* Search Algorithm
-├── question4_minimax.py       # Question 4: MiniMax for adversarial search
-├── question5_ros_gazebo.py    # Question 5: ROS and Gazebo implementation
-├── gazebo_world.world         # Gazebo world file with city coordinates
-├── robot_model.urdf           # Three-wheel robot URDF model
-├── requirements.txt           # Python dependencies
-└── README.md                  # This file
-```
+- **Question 1**: Breadth-First Search (BFS) and Depth-First Search (DFS)
+- **Question 2**: Uniform Cost Search (UCS)
+- **Question 3**: A* Search Algorithm
+- **Question 4**: MiniMax Algorithm for adversarial search
+- **Question 5**: ROS and Gazebo simulation
 
-## Requirements
+The graph data for all the problems is in `graph_data.py`. Each question has its own Python file that you can run independently.
 
-- Python 3.7+
-- ROS (for Question 5)
-- Gazebo (for Question 5)
+## Files Overview
 
-## Installation
+- `question1_bfs_dfs.py` - BFS and DFS implementations
+- `question2_ucs.py` - Uniform Cost Search
+- `question3_astar.py` - A* search
+- `question4_minimax.py` - MiniMax algorithm
+- `question5_ros_gazebo.py` - ROS/Gazebo integration
+- `graph_data.py` - All the graph data structures
+- `gazebo_world.world` - World file for Gazebo
+- `robot_model.urdf` - Robot model definition
+- `requirements.txt` - Python packages needed
 
-1. Clone the repository:
+## Getting Started
+
+First, clone this repo and install the dependencies:
+
 ```bash
-git clone <repository-url>
-cd <repository-name>
-```
-
-2. Install Python dependencies:
-```bash
+git clone https://github.com/Natiabay/Advanced-search-algorithm.git
+cd Advanced-search-algorithm
 pip install -r requirements.txt
 ```
 
-3. For Question 5 (ROS/Gazebo):
-   - Ensure ROS is installed and sourced
-   - Ensure Gazebo is installed
-   - Source your ROS workspace
+For questions 1-4, you just need Python 3.7 or higher. For question 5, you'll need ROS and Gazebo installed and set up.
 
-## Usage
+## Running the Code
 
-### Question 1: Breadth-First Search and Depth-First Search
-
+### Question 1: BFS and DFS
 ```bash
 python question1_bfs_dfs.py
 ```
-
-This implements:
-- Conversion of state space graph (Figure 1) into adjacency list data structure
-- BFS and DFS search algorithms
-- Path finding from initial state to goal state
+This converts the state space graph into an adjacency list and runs both BFS and DFS to find paths.
 
 ### Question 2: Uniform Cost Search
-
 ```bash
 python question2_ucs.py
 ```
+Finds the optimal path from Addis Ababa to Lalibela, and also handles visiting multiple cities.
 
-This implements:
-- UCS from Addis Ababa to Lalibela
-- Customized UCS to visit multiple goal states (Axum, Gondar, Lalibela, Babile, Jimma, Bale, Sof Oumer, Arba Minch)
-
-### Question 3: A* Search Algorithm
-
+### Question 3: A* Search
 ```bash
 python question3_astar.py
 ```
+Uses A* to find the best path from Addis Ababa to Moyale using the heuristic values.
 
-This implements:
-- A* search from Addis Ababa to Moyale
-- Uses heuristic values and backward costs from Figure 3
-
-### Question 4: MiniMax Algorithm
-
+### Question 4: MiniMax
 ```bash
 python question4_minimax.py
 ```
+Implements MiniMax for the adversarial search problem where we're trying to maximize utility while an adversary tries to minimize it.
 
-This implements:
-- MiniMax algorithm for adversarial search
-- Finds best path considering adversary's moves
-- Maximizes utility to reach state with good quality coffee
+### Question 5: ROS/Gazebo
+If you have ROS and Gazebo installed:
 
-### Question 5: ROS and Gazebo
-
-1. Launch Gazebo with the world file:
+1. Start Gazebo:
 ```bash
 gazebo gazebo_world.world
 ```
@@ -100,80 +77,29 @@ gazebo gazebo_world.world
 rosrun gazebo_ros spawn_model -file robot_model.urdf -urdf -model three_wheel_robot -x 0 -y 0 -z 0.1
 ```
 
-3. Run the ROS node:
+3. Run the script:
 ```bash
 python question5_ros_gazebo.py
 ```
 
-## Algorithm Implementations
+## Notes on the Algorithms
 
-### Breadth-First Search (BFS)
-- Uses queue data structure
-- Explores all nodes at current depth before moving to next level
-- Guarantees shortest path (in terms of number of steps)
+**BFS** uses a queue and finds the shortest path in terms of steps. **DFS** uses a stack and goes deep first, which can be more memory efficient but might not give you the shortest path.
 
-### Depth-First Search (DFS)
-- Uses stack data structure
-- Explores as far as possible along each branch
-- May not find shortest path but uses less memory
+**UCS** is like BFS but considers the actual costs of edges, so it finds the cheapest path overall.
 
-### Uniform Cost Search (UCS)
-- Uses priority queue (min-heap)
-- Considers path costs
-- Guarantees optimal path (minimum cost)
+**A*** combines UCS with a heuristic function. It's usually faster than UCS because it uses the heuristic to guide the search toward the goal.
 
-### A* Search
-- Combines UCS with heuristic function
-- Uses f(n) = g(n) + h(n) where:
-  - g(n) = cost from start to node n
-  - h(n) = heuristic estimate from n to goal
-- More efficient than UCS when heuristic is admissible
+**MiniMax** is for when you have an opponent. It assumes the opponent will play optimally and finds the best move you can make given that.
 
-### MiniMax Algorithm
-- Used for adversarial search
-- Agent maximizes utility, adversary minimizes
-- Finds best achievable outcome considering opponent's optimal play
+## About the Graphs
 
-## Graph Data Structures
+All the graph data is stored as Python dictionaries in `graph_data.py`. Figure 1 is just a simple adjacency list, Figure 2 has costs, Figure 3 has both costs and heuristics, Figure 4 is for the adversarial problem, and Figure 5 is used for the Gazebo simulation.
 
-All graphs are stored as Python dictionaries:
-- **Figure 1**: Simple adjacency list (no costs)
-- **Figure 2**: Weighted graph with backward costs
-- **Figure 3**: Weighted graph with heuristics and costs
-- **Figure 4**: Adversarial search graph with utilities
-- **Figure 5**: Relaxed graph for ROS/Gazebo
+## Robot Setup (Question 5)
 
-## Robot Specifications (Question 5)
+The robot is a three-wheel design with a proximity sensor, gyroscope, and camera. The world file has all the Ethiopian cities positioned as waypoints.
 
-- **Type**: Three-wheel robot
-- **Sensors**:
-  - Proximity sensor (LaserScan)
-  - Gyroscope (IMU)
-  - RGB Camera
-- **Physics**: Full physics engine enabled
-- **Control**: ROS-based velocity control
-
-## World File
-
-The Gazebo world file (`gazebo_world.world`) contains:
-- All cities from Figure 5 as waypoints
-- Cartesian coordinate system
-- Ground plane and lighting
-- Physics engine configuration
-
-## Results
-
-Each algorithm outputs:
-- Path from initial to goal state
-- Total cost (where applicable)
-- Number of nodes explored
-- Step-by-step path breakdown
-
-## Author
+---
 
 Prepared by Natnael Abayneh
-
-## License
-
-This project is for educational purposes as part of the AI Principles and Techniques course.
-
