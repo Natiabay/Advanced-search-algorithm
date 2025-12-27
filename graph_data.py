@@ -1,7 +1,4 @@
-"""
-Graph Data Structures for Traveling Ethiopia Search Problem
-Contains data structures for all figures (1-5)
-"""
+# Graph data for all the Traveling Ethiopia problems
 
 # Figure 1: Basic state space graph (no costs, no heuristics)
 FIGURE_1_GRAPH = {
@@ -84,9 +81,9 @@ FIGURE_1_GRAPH = {
     'Yabello': ['Konso', 'Bule Hora', 'Moyale'],
 }
 
-# Helper function to make graph bidirectional
+# Helper to make the graph bidirectional
 def make_bidirectional(graph):
-    """Make a directed graph bidirectional (symmetric)."""
+    """Turns a one-way graph into bidirectional."""
     bidirectional = {}
     for node, neighbors in graph.items():
         if node not in bidirectional:

@@ -1,42 +1,21 @@
-"""
-Question 3: A* Search Algorithm
-Implements A* search with heuristics and backward costs
-"""
+# Question 3: A* Search
+# Uses heuristics and backward costs
 
 import heapq
 from graph_data import FIGURE_3_GRAPH, FIGURE_3_HEURISTICS
 
 
 class AStarSearch:
-    """
-    A* Search implementation using heuristic values and backward costs.
-    """
+    """A* search with heuristics."""
     
     def __init__(self, graph, heuristics, initial_state):
-        """
-        Initialize A* search.
-        
-        Args:
-            graph: Dictionary with costs {node: {neighbor: cost}}
-            heuristics: Dictionary with heuristic values {node: h_value}
-            initial_state: Starting state
-        """
+        """Initialize A* with graph, heuristics, and starting state."""
         self.graph = graph
         self.heuristics = heuristics
         self.initial_state = initial_state
     
     def search(self, goal_state):
-        """
-        A* Search to find optimal path to goal.
-        
-        Args:
-            goal_state: Target state
-            
-        Returns:
-            tuple: (path, total_cost, nodes_explored)
-        """
-        # Priority queue: (f_score, g_score, current_node, path)
-        # f_score = g_score + h_score
+        """A* search to find optimal path. f(n) = g(n) + h(n)."""
         g_score = {self.initial_state: 0}
         f_score = {self.initial_state: self.heuristics.get(self.initial_state, 0)}
         
@@ -80,15 +59,7 @@ class AStarSearch:
         return None, float('inf'), nodes_explored
     
     def get_solution(self, goal_state):
-        """
-        Get formatted solution.
-        
-        Args:
-            goal_state: Target state
-            
-        Returns:
-            str: Formatted solution
-        """
+        """Format the solution output."""
         path, cost, nodes_explored = self.search(goal_state)
         
         if path is None:
@@ -115,7 +86,7 @@ class AStarSearch:
 
 
 def main():
-    """Demonstrate A* search."""
+    """Run the A* example."""
     print("=" * 70)
     print("Question 3: A* Search Algorithm")
     print("=" * 70)

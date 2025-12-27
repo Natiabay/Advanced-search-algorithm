@@ -1,38 +1,20 @@
-"""
-Question 2: Uniform Cost Search
-Implements UCS for single goal and multiple goals (customized)
-"""
+# Question 2: Uniform Cost Search
+# UCS for single goal and multiple goals
 
 import heapq
 from graph_data import FIGURE_2_GRAPH
 
 
 class UniformCostSearch:
-    """
-    Uniform Cost Search implementation for traveling Ethiopia problem.
-    """
+    """Uniform Cost Search for the traveling problem."""
     
     def __init__(self, graph, initial_state):
-        """
-        Initialize UCS with graph and initial state.
-        
-        Args:
-            graph: Dictionary with costs {node: {neighbor: cost}}
-            initial_state: Starting state
-        """
+        """Initialize with graph and starting state."""
         self.graph = graph
         self.initial_state = initial_state
     
     def search(self, goal_state):
-        """
-        Uniform Cost Search to find optimal path to single goal.
-        
-        Args:
-            goal_state: Target state
-            
-        Returns:
-            tuple: (path, total_cost, nodes_explored)
-        """
+        """UCS to find optimal path to a single goal."""
         # Priority queue: (total_cost, current_node, path)
         priority_queue = [(0, self.initial_state, [self.initial_state])]
         visited = set()
@@ -60,16 +42,7 @@ class UniformCostSearch:
         return None, float('inf'), nodes_explored
     
     def search_multiple_goals(self, goal_states):
-        """
-        Customized UCS to visit all goal states preserving local optimum.
-        Uses greedy approach: always go to nearest unvisited goal.
-        
-        Args:
-            goal_states: List of goal states to visit
-            
-        Returns:
-            tuple: (complete_path, total_cost, nodes_explored)
-        """
+        """Visit all goal states using greedy approach - always go to nearest unvisited goal."""
         unvisited_goals = set(goal_states)
         current_state = self.initial_state
         complete_path = [current_state]
@@ -105,16 +78,7 @@ class UniformCostSearch:
         return complete_path, total_cost, total_nodes_explored
     
     def _search_from_state(self, start_state, goal_state):
-        """
-        Helper method to perform UCS from any start state.
-        
-        Args:
-            start_state: Starting state
-            goal_state: Target state
-            
-        Returns:
-            tuple: (path, total_cost, nodes_explored)
-        """
+        """Helper to do UCS from any starting point."""
         priority_queue = [(0, start_state, [start_state])]
         visited = set()
         nodes_explored = 0
@@ -140,15 +104,7 @@ class UniformCostSearch:
         return None, float('inf'), nodes_explored
     
     def get_solution(self, goal_state):
-        """
-        Get formatted solution for single goal.
-        
-        Args:
-            goal_state: Target state
-            
-        Returns:
-            str: Formatted solution
-        """
+        """Format the solution for a single goal."""
         path, cost, nodes_explored = self.search(goal_state)
         
         if path is None:
@@ -165,15 +121,7 @@ class UniformCostSearch:
         return result
     
     def get_multiple_goals_solution(self, goal_states):
-        """
-        Get formatted solution for multiple goals.
-        
-        Args:
-            goal_states: List of goal states
-            
-        Returns:
-            str: Formatted solution
-        """
+        """Format the solution for multiple goals."""
         path, total_cost, nodes_explored = self.search_multiple_goals(goal_states)
         
         result = f"Customized Uniform Cost Search (Multiple Goals)\n"
@@ -188,7 +136,7 @@ class UniformCostSearch:
 
 
 def main():
-    """Demonstrate UCS implementations."""
+    """Run the UCS examples."""
     print("=" * 70)
     print("Question 2: Uniform Cost Search")
     print("=" * 70)

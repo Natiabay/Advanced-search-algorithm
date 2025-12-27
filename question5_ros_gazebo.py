@@ -1,7 +1,5 @@
-"""
-Question 5: ROS and Gazebo Implementation
-ROS-based pathfinding for three-wheel robot in Gazebo world
-"""
+# Question 5: ROS and Gazebo
+# Pathfinding for three-wheel robot
 
 from graph_data import FIGURE_5_GRAPH
 import rospy
@@ -12,12 +10,10 @@ import math
 
 
 class TravelingEthiopiaRobot:
-    """
-    ROS-based robot controller using uninformed search (BFS) for pathfinding.
-    """
+    """Robot controller using BFS for pathfinding."""
     
     def __init__(self):
-        """Initialize ROS node and robot components."""
+        """Initialize ROS node and setup."""
         rospy.init_node('traveling_ethiopia_robot', anonymous=True)
         
         # Publishers and Subscribers
@@ -40,10 +36,7 @@ class TravelingEthiopiaRobot:
         rospy.loginfo("Traveling Ethiopia Robot initialized")
     
     def _initialize_city_coordinates(self):
-        """
-        Initialize Cartesian coordinates for cities in Gazebo world.
-        These coordinates should match the .world file.
-        """
+        """Set up city coordinates (should match the .world file)."""
         # Example coordinates - should match .world file
         coordinates = {
             'Addis Ababa': (0.0, 0.0, 0.0),
@@ -72,16 +65,7 @@ class TravelingEthiopiaRobot:
         self.laser_data = msg
     
     def bfs_search(self, initial_state, goal_state):
-        """
-        Breadth-First Search for pathfinding.
-        
-        Args:
-            initial_state: Starting city
-            goal_state: Target city
-            
-        Returns:
-            list: Path from initial to goal
-        """
+        """BFS to find path from initial to goal city."""
         from collections import deque
         
         queue = deque([(initial_state, [initial_state])])
@@ -103,11 +87,7 @@ class TravelingEthiopiaRobot:
         return None
     
     def navigate_to_city(self, target_city):
-        """
-        Navigate robot to target city using pathfinding.
-        
-        Args:
-            target_city: Target city name
+        """Navigate to target city using pathfinding."""
         """
         if target_city not in self.city_coordinates:
             rospy.logwarn(f"City {target_city} not found in coordinates")
@@ -117,12 +97,7 @@ class TravelingEthiopiaRobot:
         self.move_to_position(target_pos)
     
     def move_to_position(self, target_pos):
-        """
-        Move robot to target position using simple control.
-        
-        Args:
-            target_pos: Target position (x, y, z)
-        """
+        """Move robot to target position."""
         rate = rospy.Rate(10)  # 10 Hz
         tolerance = 0.1
         
@@ -156,13 +131,7 @@ class TravelingEthiopiaRobot:
             rate.sleep()
     
     def execute_path(self, initial_state, goal_state):
-        """
-        Execute complete path from initial to goal state.
-        
-        Args:
-            initial_state: Starting city
-            goal_state: Target city
-        """
+        """Execute complete path from initial to goal state."""
         rospy.loginfo(f"Finding path from {initial_state} to {goal_state}")
         path = self.bfs_search(initial_state, goal_state)
         
@@ -182,7 +151,7 @@ class TravelingEthiopiaRobot:
 
 
 def main():
-    """Main function for ROS node."""
+    """Main ROS node."""
     try:
         robot = TravelingEthiopiaRobot()
         

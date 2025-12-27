@@ -1,26 +1,14 @@
-"""
-Question 4: MiniMax Algorithm for Adversarial Search
-Implements MiniMax to find best path considering adversary
-"""
+# Question 4: MiniMax for adversarial search
+# Agent maximizes, adversary minimizes
 
 from graph_data import FIGURE_4_GRAPH, FIGURE_4_UTILITIES
 
 
 class MiniMaxSearch:
-    """
-    MiniMax algorithm implementation for adversarial search problem.
-    The agent tries to maximize utility while adversary tries to minimize it.
-    """
+    """MiniMax algorithm - agent maximizes utility, adversary minimizes."""
     
     def __init__(self, graph, utilities, initial_state):
-        """
-        Initialize MiniMax search.
-        
-        Args:
-            graph: Dictionary representing state space graph
-            utilities: Dictionary with utility values for terminal nodes
-            initial_state: Starting state
-        """
+        """Initialize with graph, utilities, and starting state."""
         self.graph = graph
         self.utilities = utilities
         self.initial_state = initial_state
@@ -39,18 +27,7 @@ class MiniMaxSearch:
         return self.graph.get(state, [])
     
     def minimax(self, state, is_maximizing, depth=0, max_depth=100):
-        """
-        MiniMax algorithm with depth limiting.
-        
-        Args:
-            state: Current state
-            is_maximizing: True if agent's turn (maximize), False if adversary (minimize)
-            depth: Current depth in search tree
-            max_depth: Maximum depth to search
-            
-        Returns:
-            tuple: (best_value, best_path)
-        """
+        """MiniMax with depth limiting. Returns best value and path."""
         self.nodes_evaluated += 1
         
         # Terminal state: return utility
@@ -95,24 +72,13 @@ class MiniMaxSearch:
             return best_value, best_path
     
     def get_best_path(self):
-        """
-        Find best path from initial state using MiniMax.
-        Assumes agent starts (maximizing player).
-        
-        Returns:
-            tuple: (best_utility, best_path, nodes_evaluated)
-        """
+        """Find best path from initial state. Agent starts (maximizing)."""
         self.nodes_evaluated = 0
         utility, path = self.minimax(self.initial_state, is_maximizing=True)
         return utility, path, self.nodes_evaluated
     
     def get_solution(self):
-        """
-        Get formatted solution.
-        
-        Returns:
-            str: Formatted solution
-        """
+        """Format the solution output."""
         utility, path, nodes_evaluated = self.get_best_path()
         
         result = f"MiniMax Search Algorithm\n"
@@ -140,7 +106,7 @@ class MiniMaxSearch:
 
 
 def main():
-    """Demonstrate MiniMax search."""
+    """Run the MiniMax example."""
     print("=" * 70)
     print("Question 4: MiniMax Algorithm for Adversarial Search")
     print("=" * 70)

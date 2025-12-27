@@ -1,11 +1,9 @@
-"""
-Test script to run all question implementations
-"""
+# Test script to run all questions
 
 import sys
 
 def run_question(question_num, module_name):
-    """Run a specific question module."""
+    """Run a question module."""
     print(f"\n{'='*70}")
     print(f"Running Question {question_num}")
     print(f"{'='*70}")
@@ -17,7 +15,7 @@ def run_question(question_num, module_name):
     return True
 
 def main():
-    """Run all questions."""
+    """Run all the questions."""
     questions = [
         (1, 'question1_bfs_dfs'),
         (2, 'question2_ucs'),

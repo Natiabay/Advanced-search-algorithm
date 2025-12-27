@@ -1,49 +1,31 @@
-# Quick Start Guide
+# Quick Start
 
-## Project Name
-**traveling-ethiopia-ai-search**
-
-## Quick Test
-Run all questions at once:
+To test all questions at once:
 ```bash
 python run_all_tests.py
 ```
 
-## Individual Question Tests
+Or run them individually:
 
-### Question 1: BFS and DFS
+**Question 1: BFS and DFS**
 ```bash
 python question1_bfs_dfs.py
 ```
 
-### Question 2: Uniform Cost Search
+**Question 2: Uniform Cost Search**
 ```bash
 python question2_ucs.py
 ```
 
-### Question 3: A* Search
+**Question 3: A* Search**
 ```bash
 python question3_astar.py
 ```
 
-### Question 4: MiniMax
+**Question 4: MiniMax**
 ```bash
 python question4_minimax.py
 ```
 
-### Question 5: ROS/Gazebo
-Requires ROS environment. See README.md for details.
-
-## Project Status
-✅ All questions implemented and tested
-✅ Clean, documented code
-✅ Ready for GitHub submission
-✅ All algorithms working correctly
-
-## Next Steps
-1. Review the code and test results
-2. Follow `GITHUB_SETUP.md` to push to GitHub
-3. Submit GitHub repository URL in Google Form
-
-
-
+**Question 5: ROS/Gazebo**
+Requires ROS environment. Check the README for setup instructions.
