@@ -171,11 +171,7 @@ Each algorithm outputs:
 
 ## Author
 
-[Your Name]
-Addis Ababa University
-Institute of Technology
-School of Information Science and Engineering
-Artificial Intelligence Graduate Program
+Prepared by Natnael Abayneh
 
 ## License
 
